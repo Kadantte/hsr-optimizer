@@ -17,7 +17,7 @@
     "@viselect/react": "^3.6.0",
     "ag-grid-community": "32.1.0",
     "ag-grid-react": "32.1.0",
-    "antd": "^5.22.2",
+    "antd": "^5.23.0",
     "btoa": "^1.2.1",
     "chroma-js": "^3.1.2",
     "fast-sort": "^3.4.0",
@@ -54,34 +54,6 @@
       "phin": "3.7.1"
     }
   },
-  "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "lint": "eslint ./src",
-    "vitest": "vitest --dir src/lib --no-watch",
-    "vitest:watch": "vitest --dir src/lib --watch",
-    "test": "npx playwright test --config tests/playwright.config.ts --trace on",
-    "test:generate": "npx playwright codegen localhost:3000/hsr-optimizer",
-    "test:ui": "npm run test -- --ui",
-    "test:report": "npx playwright show-report",
-    "typecheck": "tsc --noEmit -p ./tsconfig.json",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "update-resources": "npx i18next-resources-for-ts interface -i ./public/locales/en_US -o ./src/types/resources.d.ts",
-    "update-gameData": "npx tsx src/lib/i18n/generateTranslations.ts && npm run update-resources"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
     "@playwright/test": "^1.48.0",
     "@stylistic/eslint-plugin": "^1.8.1",
@@ -110,5 +82,33 @@
     "vite": "^5.4.7",
     "vite-tsconfig-paths": "^4.3.1",
     "vitest": "^1.4.0"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "lint": "eslint ./src",
+    "vitest": "vitest --dir src/lib --no-watch",
+    "vitest:watch": "vitest --dir src/lib --watch",
+    "test": "npx playwright test --config tests/playwright.config.ts --trace on",
+    "test:generate": "npx playwright codegen localhost:3000/hsr-optimizer",
+    "test:ui": "npm run test -- --ui",
+    "test:report": "npx playwright show-report",
+    "typecheck": "tsc --noEmit -p ./tsconfig.json",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "update-resources": "npx i18next-resources-for-ts interface -i ./public/locales/en_US -o ./src/types/resources.d.ts",
+    "update-gameData": "npx tsx src/lib/i18n/generateTranslations.ts && npm run update-resources"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
