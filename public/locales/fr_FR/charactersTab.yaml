@@ -70,6 +70,7 @@ CharacterPreview:
       Custom: Custom
       Standard: Standard
     PaletteLabel: Palette de couleurs de portrait
+    ShowUID: Afficher l'UID
   ArtBy: "Art réalisé par {{artistName}}"
   EditCharacter: Modifier le personnage
   EditPortrait: Modifier le portrait
@@ -131,6 +132,8 @@ CharacterPreview:
         DOT: DSD
         BREAK: RUPTURE
         COMBO: COMBO
+    CombatBuffs:
+      Header: Buffs de combat
   ScoringColumn:
     Character:
       Header: "Build personnage ({{score}}%)"

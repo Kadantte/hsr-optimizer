@@ -50,11 +50,11 @@ CharacterPreview:
       Low: ".0"
       High: ".000"
     SpdWeight:
-      Header: SPD Weight
+      Header: SPD weight
       Max: 100%
       Min: 0%
     BenchmarkSpd:
-      Header: SPD Benchmark
+      Header: SPD benchmark
       BenchmarkOptionsLabel: Benchmark options
       CurrentSpdLabel: Current SPD - The benchmark will match your basic SPD
       BaseSpdLabel: Base SPD - The benchmark will target a minimal SPD build
@@ -70,6 +70,7 @@ CharacterPreview:
       Custom: Custom
       Standard: Standard
     PaletteLabel: Portrait color palette
+    ShowUID: Show UID
   ArtBy: "Art by {{artistName}}"
   EditCharacter: Edit character
   EditPortrait: Edit portrait
@@ -113,6 +114,7 @@ CharacterPreview:
       ULT: ULT
       FUA: FUA
       MEMO_SKILL: SKILLᴹ
+      MEMO_TALENT: TALENTᴹ
       DOTS: "DOTS:"
       BREAKS: "BREAKS:"
     CombatResults:
@@ -130,7 +132,11 @@ CharacterPreview:
         FUA: FUA DMG
         DOT: DOT DMG
         BREAK: BREAK DMG
+        MEMO_SKILL: SKILLᴹ DMG
+        MEMO_TALENT: TALENTᴹ DMG
         COMBO: COMBO DMG
+    CombatBuffs:
+      Header: Combat buffs
   ScoringColumn:
     Character:
       Header: "Character build ({{score}}%)"
