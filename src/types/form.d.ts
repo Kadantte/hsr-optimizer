@@ -87,6 +87,7 @@ export type Form = {
   path?: string // remove?
   deprioritizeBuffs?: boolean
   resultMinFilter: number
+  trace?: boolean
 
   // Combo
   comboStateJson: string
@@ -140,6 +141,8 @@ export type Form = {
   maxSkill: number
   minMemoSkill: number
   maxMemoSkill: number
+  minMemoTalent: number
+  maxMemoTalent: number
   minSpd: number
   maxSpd: number
   minUlt: number

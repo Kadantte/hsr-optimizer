@@ -7,6 +7,7 @@ import DB from 'lib/state/db'
 import { applyMetadataPresetToForm } from 'lib/tabs/tabOptimizer/optimizerForm/components/RecommendedPresetsButton'
 import { TsUtils } from 'lib/utils/TsUtils'
 import { Utils } from 'lib/utils/utils'
+import { ConditionalValueMap } from 'types/conditionals'
 import { Form, Teammate } from 'types/form'
 import { OptimizerCombatBuffs } from 'types/optimizer'
 
@@ -51,6 +52,8 @@ export function displayToForm(form: Form) {
   form.minFua = getNumber(form.minFua, 0)
   form.maxMemoSkill = getNumber(form.maxMemoSkill, MAX_INT)
   form.minMemoSkill = getNumber(form.minMemoSkill, 0)
+  form.maxMemoTalent = getNumber(form.maxMemoTalent, MAX_INT)
+  form.minMemoTalent = getNumber(form.minMemoTalent, 0)
   form.maxDot = getNumber(form.maxDot, MAX_INT)
   form.minDot = getNumber(form.minDot, 0)
   form.maxBreak = getNumber(form.maxBreak, MAX_INT)
@@ -64,6 +67,9 @@ export function displayToForm(form: Form) {
   for (const buff of Object.values(CombatBuffs)) {
     form.combatBuffs[buff.key] = getNumber(form.combatBuffs[buff.key], 0, buff.percent ? 100 : 0)
   }
+
+  if (!form.characterConditionals) form.characterConditionals = {}
+  if (!form.lightConeConditionals) form.lightConeConditionals = {}
 
   form.mainHead = form.mainHead || []
   form.mainHands = form.mainHands || []
@@ -116,6 +122,8 @@ export function formToDisplay(form: Form) {
   newForm.minFua = unsetMin(form.minFua)
   newForm.maxMemoSkill = unsetMax(form.maxMemoSkill)
   newForm.minMemoSkill = unsetMin(form.minMemoSkill)
+  newForm.maxMemoTalent = unsetMax(form.maxMemoTalent)
+  newForm.minMemoTalent = unsetMin(form.minMemoTalent)
   newForm.maxDot = unsetMax(form.maxDot)
   newForm.minDot = unsetMin(form.minDot)
   newForm.maxBreak = unsetMax(form.maxBreak)
@@ -351,5 +359,19 @@ function cloneTeammate(teammate: Teammate | undefined) {
     characterEidolon: teammate.characterEidolon ?? null,
     lightCone: teammate.lightCone ?? null,
     lightConeSuperimposition: teammate.lightConeSuperimposition ?? null,
+    characterConditionals: sanitizeConditionals(teammate.characterConditionals),
+    lightConeConditionals: sanitizeConditionals(teammate.lightConeConditionals),
   } as Teammate
+}
+
+function sanitizeConditionals(conditionals: ConditionalValueMap) {
+  if (!conditionals) return null
+
+  for (const key of Object.keys(conditionals)) {
+    if (conditionals[key] == null) {
+      delete conditionals[key]
+    }
+  }
+
+  return conditionals
 }

@@ -1,7 +1,7 @@
-import { baseComputedStatsObject } from 'lib/conditionals/conditionalConstants'
 import { Sets } from 'lib/constants/constants'
 import { GpuExecutionContext } from 'lib/gpu/webgpuTypes'
 import { ComputedStatsArray, ComputedStatsArrayCore, ComputedStatsObjectExternal, InternalKeyToExternal, Key, KeysType } from 'lib/optimization/computedStatsArray'
+import { baseComputedStatsObject } from 'lib/optimization/config/computedStatsConfig'
 import { TsUtils } from 'lib/utils/TsUtils'
 
 export function logIterationTimer(i: number, gpuContext: GpuExecutionContext) {
@@ -21,29 +21,29 @@ export function debugWebgpuOutput(gpuContext: GpuExecutionContext, arrayBuffer: 
 }
 
 /*
-    ED: array[22],
-    BASIC: array[69],
-    SKILL: array[70],
-    ULT: array[71],
-    FUA: array[72],
-    DOT: array[73],
-    BREAK: array[74],
-    COMBO: array[75],
-    EHP: array[77],
-    HEAL: array[102],
-    SHIELD: array[105],
-    xHP: array[4],
-    xATK: array[5],
-    xDEF: array[6],
-    xSPD: array[7],
-    xCR: array[8],
-    xCD: array[9],
-    xEHR: array[10],
-    xRES: array[11],
-    xBE: array[12],
-    xERR: array[13],
-    xOHB: array[14],
-    xELEMENTAL_DMG: array[22],
+ ED: array[22],
+ BASIC: array[69],
+ SKILL: array[70],
+ ULT: array[71],
+ FUA: array[72],
+ DOT: array[73],
+ BREAK: array[74],
+ COMBO: array[75],
+ EHP: array[77],
+ HEAL: array[102],
+ SHIELD: array[105],
+ xHP: array[4],
+ xATK: array[5],
+ xDEF: array[6],
+ xSPD: array[7],
+ xCR: array[8],
+ xCD: array[9],
+ xEHR: array[10],
+ xRES: array[11],
+ xBE: array[12],
+ xERR: array[13],
+ xOHB: array[14],
+ xELEMENTAL_DMG: array[22],
  */
 
 export function debugExportWebgpuResult(array: Float32Array) {
@@ -63,6 +63,7 @@ export function debugExportWebgpuResult(array: Float32Array) {
     ULT: x.$ULT_DMG,
     FUA: x.$FUA_DMG,
     MEMO_SKILL: x.$MEMO_SKILL_DMG,
+    MEMO_TALENT: x.$MEMO_TALENT_DMG,
     DOT: x.$DOT_DMG,
     BREAK: x.$BREAK_DMG,
     COMBO: x.$COMBO_DMG,
@@ -122,7 +123,7 @@ export function debugWebgpuComputedStats(array: Float32Array): ComputedStatsObje
   for (const key in Key) {
     const externalKey = InternalKeyToExternal[key] ?? key
     const numericKey = Key[key as KeysType]
-    result[externalKey as keyof ComputedStatsObjectExternal] = array[numericKey]
+    result[externalKey] = array[numericKey]
   }
   return result as ComputedStatsObjectExternal
 }
